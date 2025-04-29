@@ -1,42 +1,48 @@
-/*
-function direBonjour(name: string): string {
-    return `Bonjour, ${name}!`;
+function addition(a: number, b: number): number {
+    return a + b;
 }
-*/
-
-function direBonjour(name: any): string {
-    return `Bonjour, ${name}!`;
-}
-console.log(direBonjour("Bou gatt"));
-
-type baila = number | string | boolean
-type numberNullable = number | null
-
-let a: baila = 5;
-a = 10
-a = "bou gatt"
-a = false
-
-let bailas: baila[] = [5, 10, "bou gatt", false];
-let biranes: (number | string | boolean)[] = [5, 10, "bou gatt", false];
-
-bailas.push(55)
-
-let b: number | undefined = undefined
-let c: numberNullable = null;
-
-let dataUnknown: unknown = ["bou gatt", 5, true, null, undefined]
-let dataAny: any = ["bou gatt", 5, true, null, undefined]
-
-//dataAny = 5
-dataAny.push(78);
-
-if(dataUnknown instanceof Array){
-    dataUnknown.push(78);
+function soustraction(a: number, b: number): number {
+    return a - b;
 }
 
-let e: number = dataAny;
-
-if(typeof dataUnknown === "number"){
-    let f: number = dataUnknown;
+function multiplicaiton(a: number, b: number): number {
+    return a * b;
 }
+
+function division(a: number, b: number): number {
+    if (b === 0) {
+        throw new Error("Division par zéro impossible.");
+    }
+    return a / b;
+}
+
+function calculatrice(a: number, b: number, operation: string): number {
+    switch (operation) {
+        case "addition":
+            return addition(a, b);
+        case "soustraction":
+            return soustraction(a, b);
+        case "multiplication":
+            return multiplicaiton(a, b);
+        case "division":
+            return division(a, b);
+        default:
+            throw new Error("Opération non reconnue.");
+    }
+}
+
+function main() {
+    const a = 10;
+    const b = 5;
+    const operation = "addition";
+
+    try {
+        const resultat = calculatrice(a, b, operation);
+        console.log(`Le résultat de ${operation} entre ${a} et ${b} est : ${resultat}`);
+    } catch (error) {
+        if(error instanceof Error) {
+            console.error(error.message);
+        }
+    }
+}
+main()

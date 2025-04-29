@@ -1,24 +1,45 @@
 "use strict";
-function direBonjour(name) {
-    return `Bonjour, ${name}!`;
+function addition(a, b) {
+    return a + b;
 }
-console.log(direBonjour("Bou gatt"));
-let a = 5;
-a = 10;
-a = "bou gatt";
-a = false;
-let bailas = [5, 10, "bou gatt", false];
-let biranes = [5, 10, "bou gatt", false];
-bailas.push(55);
-let b = undefined;
-let c = null;
-let dataUnknown = ["bou gatt", 5, true, null, undefined];
-let dataAny = ["bou gatt", 5, true, null, undefined];
-dataAny.push(78);
-if (dataUnknown instanceof Array) {
-    dataUnknown.push(78);
+function soustraction(a, b) {
+    return a - b;
 }
-let e = dataAny;
-if (typeof dataUnknown === "number") {
-    let f = dataUnknown;
+function multiplicaiton(a, b) {
+    return a * b;
 }
+function division(a, b) {
+    if (b === 0) {
+        throw new Error("Division par zéro impossible.");
+    }
+    return a / b;
+}
+function calculatrice(a, b, operation) {
+    switch (operation) {
+        case "addition":
+            return addition(a, b);
+        case "soustraction":
+            return soustraction(a, b);
+        case "multiplication":
+            return multiplicaiton(a, b);
+        case "division":
+            return division(a, b);
+        default:
+            throw new Error("Opération non reconnue.");
+    }
+}
+function main() {
+    const a = 10;
+    const b = 5;
+    const operation = "soustraction";
+    try {
+        const resultat = calculatrice(a, b, operation);
+        console.log(`Le résultat de ${operation} entre ${a} et ${b} est : ${resultat}`);
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            console.error(error.message);
+        }
+    }
+}
+main();
